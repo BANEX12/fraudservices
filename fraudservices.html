@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Services - Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a2238;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            transition: opacity 1s ease-in-out;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: #0f172a;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background-color: #1e3a8a;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #2563eb;
+            transform: scale(1.1);
+        }
+
+        nav img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .content {
+            max-width: 1000px;
+            text-align: center;
+            padding: 30px;
+            background-color: #334155;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            display: none;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .content h1 {
+            color: #38bdf8;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #1e3a8a;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2563eb;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .active {
+            display: block;
+            opacity: 1;
+        }
+
+        .brand {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .shop-items {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .shop-item {
+            background-color: #3b4a69;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .shop-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .shop-item h3 {
+            color: #38bdf8;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .shop-item p {
+            color: #cbd5e1;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .shop-item .btn {
+            background-color: #2563eb;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .payment-option {
+            background-color: #1e3a8a;
+            padding: 20px 40px;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-option:hover {
+            background-color: #2563eb;
+        }
+
+        .receipt-instructions {
+            margin-top: 20px;
+            background-color: #3b4a69;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .customization-options {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #334155;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .customization-options label {
+            display: block;
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .customization-options input {
+            padding: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #38bdf8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="brand">Fraud Services</div>
+
+    <nav>
+        <a href="javascript:void(0)" onclick="showContent('shop')">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" alt="Shop Icon"> Shop
+        </a>
+        <a href="javascript:void(0)" onclick="showContent('help')">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png" alt="Help Icon"> Help
+        </a>
+        <a href="javascript:void(0)" onclick="showContent('credits')">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/handshake.png" alt="Credits Icon"> Credits
+        </a>
+        <a href="javascript:void(0)" onclick="showContent('about')">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/info.png" alt="About Icon"> About
+        </a>
+    </nav>
+
+    <div id="shop" class="content active">
+        <h1>Shop</h1>
+        <p>Explore a variety of Fortnite accounts with skins and other cool perks. Choose your package!</p>
+
+        <div class="shop-items">
+            <div class="shop-item">
+                <img src="https://images-ext-1.discordapp.net/external/Ze3l1bmG8zqoQoZlhJq7pWKJDhixrq0Yul_rzWOdYDw/https/share.creavite.co/672e37f4b23406fceac1346d.gif?width=400&height=141" alt="Fortnite Account">
+                <h3>Fortnite Account - 50-81 Skins</h3>
+                <p>$7 - Includes NFA (No Forced Authentication) account with skins and emotes!</p>
+                <a href="javascript:void(0)" class="btn" onclick="showCustomizationPage()">Buy Now</a>
+            </div>
+
+            <div class="shop-item">
+                <img src="https://images-ext-1.discordapp.net/external/Ze3l1bmG8zqoQoZlhJq7pWKJDhixrq0Yul_rzWOdYDw/https/share.creavite.co/672e37f4b23406fceac1346d.gif?width=400&height=141" alt="Fortnite Account">
+                <h3>Fortnite Account - 100+ Skins</h3>
+                <p>$13 - Includes FA (Forced Authentication) account with skins, rare emotes, and more!</p>
+                <a href="javascript:void(0)" class="btn" onclick="showCustomizationPage()">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="customization" class="content">
+        <h1>Customize Your Account</h1>
+        <p>Select the features you want on your Fortnite account:</p>
+
+        <div class="customization-options">
+            <label for="skins">Skins:</label>
+            <input type="text" id="skins" placeholder="Add skins you'd like to have">
+            <label for="emotes">Emotes:</label>
+            <input type="text" id="emotes" placeholder="Add any rare emotes">
+        </div>
+
+        <a href="javascript:void(0)" class="btn" onclick="showPaymentPage()">Proceed to Payment</a>
+    </div>
+
+    <div id="payment" class="content">
+        <h1>Choose Your Payment Method</h1>
+        <p>Please select your preferred payment method:</p>
+
+        <div class="payment-methods">
+            <div class="payment-option" onclick="showCashAppInstructions()">CashApp</div>
+            <div class="payment-option" onclick="showApplePayInstructions()">Apple Pay</div>
+            <div class="payment-option" onclick="showCryptoInstructions()">Crypto</div>
+        </div>
+    </div>
+
+    <div id="cashapp" class="content">
+        <h1>CashApp Payment</h1>
+        <p>Send $7 or $13 to <strong>$carvess</strong>.</p>
+        <p>After payment, upload your web receipt below:</p>
+        <input type="file" id="cashapp-receipt" />
+        <p>Instructions: Open CashApp, click on the "Activity" tab, and take a screenshot of the payment details.</p>
+    </div>
+
+    <div id="applepay" class="content">
+        <h1>Apple Pay Payment</h1>
+        <p>Send $7 or $13 to <strong>+1 (904) 810-8212</strong> via Apple Pay.</p>
+        <p>After payment, upload your receipt:</p>
+        <input type="file" id="applepay-receipt" />
+    </div>
+
+    <div id="crypto" class="content">
+        <h1>Crypto Payment</h1>
+        <p>To pay via Crypto, please DM <strong>@fraudci</strong> on Discord.</p>
+    </div>
+
+    <div id="help" class="content">
+        <h1>Help</h1>
+        <p>If you need assistance, join our <a href="https://discord.gg/qazpmJTgz6" target="_blank" class="btn">Discord Support Channel</a>.</p>
+    </div>
+
+    <div id="credits" class="content">
+        <h1>Credits</h1>
+        <p>We’d like to thank BANE for creating this website.</p>
+    </div>
+
+    <div id="about" class="content">
+        <h1>About</h1>
+        <p>Our website started on November 8th, 2024. The founder of Fraud Services is FraudCi, dedicated to providing exceptional Fortnite accounts and services.</p>
+    </div>
+
+    <script>
+        function showContent(sectionId) {
+            const sections = document.querySelectorAll('.content');
+            sections.forEach((section) => {
+                section.classList.remove('active');
+            });
+
+            const section = document.getElementById(sectionId);
+            section.classList.add('active');
+        }
+
+        function showCustomizationPage() {
+            document.getElementById('shop').classList.remove('active');
+            document.getElementById('customization').classList.add('active');
+        }
+
+        function showPaymentPage() {
+            document.getElementById('customization').classList.remove('active');
+            document.getElementById('payment').classList.add('active');
+        }
+
+        function showCashAppInstructions() {
+            document.getElementById('payment').classList.remove('active');
+            document.getElementById('cashapp').classList.add('active');
+        }
+
+        function showApplePayInstructions() {
+            document.getElementById('payment').classList.remove('active');
+            document.getElementById('applepay').classList.add('active');
+        }
+
+        function showCryptoInstructions() {
+            document.getElementById('payment').classList.remove('active');
+            document.getElementById('crypto').classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('shop');
+        });
+    </script>
+
+</body>
+</html>
